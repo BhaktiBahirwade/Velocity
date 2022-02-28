@@ -1,0 +1,49 @@
+package testng;
+
+import org.testng.Assert;
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+public class keywords {
+	
+	@Test(priority=1,enabled=false)
+	public void TC01()
+	{
+		Reporter.log("This is TC01",true);
+	}
+	
+	@Test(priority=-1, invocationCount=5,enabled=false)
+	public void TC02()
+	{
+		Reporter.log("This is TC02",true);
+	}
+	
+	
+	@Test(enabled=false)
+	public void TC03()
+	{
+		Reporter.log("This is TC03",true);
+	}
+	
+	@Test(timeOut=1000)
+	public void TC04() throws InterruptedException
+	{
+		Reporter.log("This is TC04",true);
+		Thread.sleep(2000);
+	}
+	
+	@Test
+	public void login() throws InterruptedException
+	{
+		Reporter.log("Login is successful",true);
+		Assert.fail();
+	}
+	
+	@Test(dependsOnMethods="login")
+	public void logout()
+	{
+		Reporter.log("Logout is successful",true);
+	}
+	
+
+}
